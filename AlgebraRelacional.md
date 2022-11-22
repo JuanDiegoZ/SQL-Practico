@@ -12,3 +12,16 @@ Las relaciones en álgebra relacional se refiere a una tabla.
 ## Set up a PostgreSQL server and pgAdmin with Docker
 
 <https://linuxhint.com/postgresql_docker/>
+
+HAVING es una clausula también bastante usada para especificar condiciones, se usa despues de agrupar los datos
+
+SELECT  name, SUM(sales)
+FROM tabla_diaria
+GROUP BY name
+HAVING SUM(sales) > 100
+
+"""sql
+
+
+
+"""
