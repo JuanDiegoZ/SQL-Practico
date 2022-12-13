@@ -22,6 +22,51 @@ HAVING SUM(sales) > 100
 
 """sql
 
+SELECT *
+FROM tabla_one
+GROUP BY marca;
 
 
 """
+
+## Limit.
+
+para ver los valores en un intervalo determinado. Por ejemplo los 10 primeros.
+
+## OFFSET
+
+permite elegir desde que valor ver la consulta, por ejemplo muestrame desde el valor 10, lo puedes combinar con el LIMIT para por ejemplo ver desde el elemento 10 hasta el 20.
+
+### El segundo mayor
+
+----
+SELECT *
+FROM platzi.alumnos
+WHERE colegiatura = (
+	SELECT DISTINCT colegiatura
+	FROM platzi.alumnos
+	WHERE tutor_id = 20
+	ORDER BY colegiatura DESC
+	LIMIT 1 OFFSET 1
+);
+### La mitad de registros
+----
+
+SELECT *
+FROM platzi.alumnos 
+OFFSET(SELECT (COUNT(id)/2)
+	  FROM platzi.alumnos);
+### IN en SQL
+----
+SELECT *
+FROM platzi.alumnos
+WHERE id IN (1,2,5,6,7);
+
+### DATES IN SQL 
+----
+SELECT EXTRACT(YEAR FROM fecha_incorporacion), EXTRACT( MONTH FROM fecha_incorporacion)
+FROM platzi.alumnos;
+### Minutos Fecha, hora.
+----
+SELECT EXTRACT(HOUR FROM fecha_incorporacion), EXTRACT( MIN FROM fecha_incorporacion),EXTRACT( SECOND FROM fecha_incorporacion)
+FROM platzi.alumnos;
